@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>u_json_kpi</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>BR_Json_KPI</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+try {
+gs.log('Ravi Start');
+var raw_data = current.u_raw_json;
+
+var parsedData = JSON.parse(raw_data);
+
+// get the header tags
+for (i=0; i<parsedData.series.length; i++) {
+	current.u_producer = parsedData.series[i].tags.Producer;
+	current.u_alert_id = parsedData.series[i].tags.UUID;
+	current.u_kpi = parsedData.series[i].tags.kpi_id;
+	current.u_level = parsedData.series[i].tags.level;
+	current.u_profile_id = parsedData.series[i].tags.profile_id;
+	current.u_state = parsedData.series[i].tags.state;
+	
+	// get columns and values.
+	columns = parsedData.series[i].columns;
+	values = parsedData.series[i].values[0];
+	for (j=0; j<columns.length; j++) {
+       column = columns[j];
+       value = values[j];
+       current.u_column_values[column] = value;
+    }	
+}
+
+ //current.update();
+	
+ gs.log('Ravi done');
+}
+catch (ex) {
+	var message = ex.message;
+}
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-06 07:58:44</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d61fe11d2f83301037882b5df699b6b1</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>BR_Json_KPI</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Json_App" source="516ea5992f83301037882b5df699b697">516ea5992f83301037882b5df699b697</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Json_App">516ea5992f83301037882b5df699b697</sys_scope>
+        <sys_update_name>sys_script_d61fe11d2f83301037882b5df699b6b1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-06 10:54:15</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=d61fe11d2f83301037882b5df699b6b1"/>
+</record_update>

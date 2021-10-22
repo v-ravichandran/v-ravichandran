@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Json_KPI" max_length="40" name="u_json_kpi" sizeclass="7" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="alert_id" max_length="40" name="u_alert_id" type="string"/>
+        <element label="column_values" max_length="4000" name="u_column_values" type="simple_name_values"/>
+        <element attributes="edge_encryption_enabled=true" label="kpi" max_length="400" name="u_kpi" type="string"/>
+        <element label="level" max_length="40" name="u_level" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="u_number" type="string"/>
+        <element label="producer" max_length="40" name="u_producer" type="string"/>
+        <element label="profile_id" max_length="40" name="u_profile_id" type="string"/>
+        <element label="raw_json" max_length="4000" name="u_raw_json" type="string"/>
+        <element label="state" max_length="40" name="u_state" type="string"/>
+    </element>
+</database>
